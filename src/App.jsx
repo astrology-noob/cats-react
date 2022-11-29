@@ -4,10 +4,12 @@ import Main from "./components/Main";
 
 const Ctx = React.createContext({});
 
-export default () => {
+const App = () => {
     return <Ctx.Provider value={{
         cats: data["cats"]
     }}>
-        <Main cats={data.cats}></Main>
+        <Main/>
     </Ctx.Provider>
 }
+
+export {App, Ctx}
