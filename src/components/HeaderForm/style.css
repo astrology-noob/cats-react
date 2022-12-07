@@ -1,0 +1,50 @@
+input:focus {
+	outline: none;
+}
+
+form {
+    width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.header {
+    width: 100vw;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    background-color: #fff;
+}
+
+.header_form_wrapper {
+    width: 80%;
+}
+
+input[name=id] {
+    width: 50px;
+}
+
+input[name=name] {
+    width: 100px;
+}
+
+input[name=image] {
+    width: 230px;
+}
+
+input[name=age] {
+    width: 100px;
+}
+
+input[name=rate] {
+    width: 100px;
+}
+
+input[name=description] {
+    width: 200px;
+}
