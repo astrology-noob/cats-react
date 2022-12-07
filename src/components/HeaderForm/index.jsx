@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import "./style.css";
 import {Ctx} from "../../App";
 
@@ -21,14 +21,16 @@ export default () => {
         
         const result = Api.addCat(body);
 
-        setCurName("");
-        setCurImage("");
-        setCurAge("");
-        setCurRate("");
-        setCurDescription("");
-
-        // не обновляется список...
-        Api.getAll().then(data => setCats(data));
+        result.then(response => {
+            setCurName("");
+            setCurImage("");
+            setCurAge("");
+            setCurRate("");
+            setCurDescription("");
+    
+            // не обновляется список...
+            Api.getAll().then(data => setCats(data));
+        })
     }
 
     return <div className="header">

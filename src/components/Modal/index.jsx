@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import cross from "bootstrap-icons/icons/x.svg";
 import Api from "../../api.js";
 import {Ctx} from "../../App";
@@ -34,11 +34,16 @@ export default () => {
         }
         
         const result = Api.updateCat(curCatId, body);
+        result.then(response => {
+            Api.getAll().then(data => setCats(data));
+        })
     }
 
     const deleteHandler = () => {
         const result = Api.deleteCat(curCatId);
-        Api.getAll().then(data => setCats(data));
+        result.then(response => {
+            Api.getAll().then(data => setCats(data));
+        })
     }
 
     const clear = () => {

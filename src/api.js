@@ -22,17 +22,6 @@ class Api {
         }).then(res => res.json()).then(data => data);
     }
 
-    // static async updateAnimal(id, body, path="https://wwf-server.herokuapp.com/api/animals") {
-    //     return await fetch(path + "/update/" + id, {
-    //         method: "PUT",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         },
-    //         body: JSON.stringify(body)
-    //     }).then(res => res.json()).then(data => data);
-    // }
-
     static async getIds(path="https://cats.petiteweb.dev/api/single/astrology_noob/ids") {
         return await fetch(path).then(res => res.json()).then(data => data);
     }

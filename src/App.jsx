@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-// import data from "./assets/data.json";
 import Main from "./components/Main";
 import Api from "../src/api.js";
 import HeaderForm from "./components/HeaderForm";
