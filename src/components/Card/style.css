@@ -6,9 +6,9 @@
 }
 
 .card {
+    width: 18rem;
     position: relative;
 }
-
 
 .favorite_btn {
     position: absolute;

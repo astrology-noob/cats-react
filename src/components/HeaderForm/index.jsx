@@ -1,56 +1,48 @@
-import React, {useState, useContext} from "react";
-import cross from "bootstrap-icons/icons/x.svg";
+import React, {useState, useContext, useEffect} from "react";
 import "./style.css";
 import {Ctx} from "../../App";
 
 export default () => {
-    const {Api, setCats} = useContext(Ctx);
+    const {Api, setCats, ids, curName, setCurName, curImage, setCurImage, curAge, setCurAge, curRate, setCurRate, curDescription, setCurDescription} = useContext(Ctx);
 
-    const [id, setId] = useState("");
-    const [name, setName] = useState("");
-    const [image, setImage] = useState("");
-    const [age, setAge] = useState("");
-    const [rate, setRate] = useState("");
-    // const [favorite, setFavorite] = useState(false);
-    const [description, setDescription] = useState("");
-    
-    const handler = (e) => {
+
+    const addFormHandler = (e) => {
         e.preventDefault();
         
-        // проверить есть ли уже такой id
-        
         const body = {
-            "id": id,
-            "name": name,
-            "rate": rate,
-            "age": age,
+            "id": Math.max.apply(null, ids) + 1,
+            "name": curName,
+            "image": curImage,
+            "age": curAge ? curAge : 0,
+            "rate": curRate ? curRate : 0,
             "favorite": false,
-            "description": description,
-            "image": image,
+            "description": curDescription,
         }
         
-        // console.log(body);
         const result = Api.addCat(body);
 
-        setId("");
-        setName("");
-        setImage("");
-        setAge("");
-        setRate("");
-        setDescription("");
+        setCurName("");
+        setCurImage("");
+        setCurAge("");
+        setCurRate("");
+        setCurDescription("");
 
+        // не обновляется список...
         Api.getAll().then(data => setCats(data));
     }
 
     return <div className="header">
             <div className="header_form_wrapper">
-                <form onSubmit={handler}>
-                    <input type="text" className="form-control" placeholder="ID" name="id" value={id} onChange={e => setId(e.target.value)}/>
-                    <input type="text" className="form-control" placeholder="Имя" name="name" value={name} onChange={e => setName(e.target.value)}/>
-                    <input type="text" className="form-control" placeholder="Ссылка на фотографию" name="image" value={image} onChange={e => setImage(e.target.value)}/>
-                    <input type="text" className="form-control" placeholder="Возраст" name="age" value={age} onChange={e => setAge(e.target.value)}/>
-                    <input type="text" className="form-control" placeholder="Рейтинг" name="rate" value={rate} onChange={e => setRate(e.target.value)}/>
-                    <input type="text" className="form-control" placeholder="Описание" name="description" value={description} onChange={e => setDescription(e.target.value)}/>
+                <form onSubmit={addFormHandler}>
+                    <input type="text" className="form-control" placeholder="Имя" name="name" value={curName} onChange={e => setCurName(e.target.value)}/>
+                    <input type="text" className="form-control" placeholder="Ссылка на фотографию" name="image" value={curImage} onChange={e => setCurImage(e.target.value)}/>
+
+                    {/* TODO: минимальное значение - 0 */}
+                    <input type="text" className="form-control" placeholder="Возраст" name="age" value={curAge} onChange={e => setCurAge(e.target.value)}/>
+                    
+                    {/* TODO: Максимальное значение - 10, минимальное - 0 */}
+                    <input type="text" className="form-control" placeholder="Рейтинг" name="rate" value={curRate} onChange={e => setCurRate(e.target.value)}/>
+                    <input type="text" className="form-control" placeholder="Описание" name="description" value={curDescription} onChange={e => setCurDescription(e.target.value)}/>
                     <button type="submit" className="btn btn-primary">Добавить</button>
                 </form>
             </div>

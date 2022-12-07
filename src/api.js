@@ -34,13 +34,14 @@ class Api {
     // }
 
     static async getIds(path="https://cats.petiteweb.dev/api/single/astrology_noob/ids") {
-        return await fetch(path).then(res => res.json()).then(data => data.data);
+        return await fetch(path).then(res => res.json()).then(data => data);
     }
 
     static async updateCat(id, body, path="https://cats.petiteweb.dev/api/single/astrology_noob/update") {
         return await fetch(path + "/" + id, {
                     method: "PUT",  
                     headers: {
+                        "Access-Control-Allow-Origin": "*",
                         "Content-Type": "application/json",
                         "Accept": "application/json"
                     },
